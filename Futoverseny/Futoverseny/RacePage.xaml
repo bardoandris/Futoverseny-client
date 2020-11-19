@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 x:Class="Futoverseny.RacePage"
+			 xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms">
+	<ContentPage.Content>
+		<StackLayout>
+			<Label Text="A beolvasáshoz nyomd le a gombot"
+				VerticalOptions="Start" 
+				HorizontalOptions="CenterAndExpand"
+				Margin="0,50,0,0"
+				FontSize="Title"
+				FontAttributes="Bold"
+				 />
+			<Button Text="Beolvasás" Margin="0,20,0,0" Clicked="Button_Clicked"/>
+            <!--<Frame IsVisible="False" x:Name="ScanFrame">
+                <zxing:ZXingScannerView x:Name="ScannerView" IsScanning="False"/>
+
+            </Frame>-->
+        </StackLayout>
+	</ContentPage.Content>
+</ContentPage>
