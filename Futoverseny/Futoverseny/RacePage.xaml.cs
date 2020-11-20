@@ -31,7 +31,8 @@ namespace Futoverseny
 				Navigation.PopModalAsync(true);
 				if (raceClass.Process(result.Text, out finalData))
 				{
-					 RaceResults = JsonConvert.SerializeObject(finalData);
+					
+					
 				} 
 
 			};

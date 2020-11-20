@@ -29,7 +29,7 @@ namespace Futoverseny
 		{
 			Actions.Add(0, StartRace); //Start Code
 			Actions.Add(1, InRace); // Checks for route violation
-			Actions.Add(2, EndRace); // Handles the sending of data
+			Actions.Add(2, (_) => { Done = true; }); ; // Handles the sending of data
 			data = new Data(nev, osztaly);
 		}
 		/// <summary>
@@ -54,6 +54,7 @@ namespace Futoverseny
 			}
 			else
 			{
+				stopwatch.Start();
 				Currentstop = 1; 
 			}
 		}
@@ -73,17 +74,17 @@ namespace Futoverseny
 				}
 				else
 				{
-						
+					FailureHandle(code, FailConditions.WrongOrder);	
 				}
 			}
 		}
-		void EndRace(string code)
-		{
-
-		}
+		
 		void FailureHandle(string code, FailConditions fail)
 		{
+			if (fail == FailConditions.InvalidCode)
+			{
 
+			}
 		}
 	}
 }
