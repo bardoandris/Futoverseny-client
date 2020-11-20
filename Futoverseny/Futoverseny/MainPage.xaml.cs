@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using ZXing.Net.Mobile.Forms;
+using System.Text.RegularExpressions;
 
 
 namespace Futoverseny
@@ -20,13 +21,12 @@ namespace Futoverseny
 
 		private void Button_Clicked(object sender, EventArgs e)
 		{
-			Scanner.IsScanning = true;
-			Navigation.PushModalAsync(new RacePage());
+			Navigation.PushModalAsync(new RacePage(NameEntry.Text, ClassEntry.Text));
 		}
 
 		private void ZXingScannerView_OnScanResult(ZXing.Result result)
 		{
-			Scanner.IsScanning = false;
+			
 
 			/*Device.BeginInvokeOnMainThread(() =>
 			{

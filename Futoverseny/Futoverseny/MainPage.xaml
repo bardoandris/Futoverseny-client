@@ -7,25 +7,32 @@
 		<Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
 			<Label Text="Üdv a futóverseny rendszerben" HorizontalTextAlignment="Center" TextColor="White" FontSize="28"/>
 		</Frame>
-		<Frame BackgroundColor="Yellow" Margin="0,0,0,0">
+		<Frame BackgroundColor="Yellow" Margin="0,0,0,40">
 			<StackLayout>
 				<Label FontSize="Large" HorizontalOptions="CenterAndExpand">
 					Ezt olvasd el, mielőtt elindulsz!
 				</Label>
+                
 				<Label FontSize="Medium">
-				   A verseny verseny menete az alábbi: 
+				   A verseny verseny menete az alábbi:
+                    
 					1. A kezdő QR-kódot beolvasva elindul egy stopper, ami egészen a cél beolvasásáig fut, szóval hajrá :D
 					2. Az útvonalon sorrendben, az összes közbünső kódot beolvasva haladj végig (a sorrendet olvasáskor ellenőrzi az applikáció)
-					3. Ha beértél a célba, akkor küldd el az eredményed emailben a gombbal, itt a becsületetekre támaszkodom.
+					3. Ha beértél a célba, akkor az applikáció el fogja küldeni az eredményed automatikusan, amint aktív internetkapcsolata lesz
 					4. Sok szerencsét!
-				</Label>
+                    
+                </Label>
 			</StackLayout>
 		</Frame>
-		<Button Text="Kód beolvasása" Clicked="Button_Clicked"></Button>
-		
-			<zxing:ZXingScannerView x:Name="Scanner" IsScanning="True"
-				   OnScanResult="ZXingScannerView_OnScanResult"></zxing:ZXingScannerView>
-		
-	</StackLayout>
+        
+        <Label Text="Név" FontSize="Large" />
+        <Entry x:Name="NameEntry" Placeholder=""/>
+        
+        <Label Text="Osztály" FontSize="Large" />
+        <Entry x:Name="ClassEntry" Placeholder=""/>
+        
+        <Button Text="Belépépés a versenybe" Clicked="Button_Clicked"></Button>
+   
+    </StackLayout>
 
 </ContentPage>

@@ -2,6 +2,7 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
+
 namespace Futoverseny
 {
 	public partial class App : Application
@@ -9,7 +10,7 @@ namespace Futoverseny
 		public App()
 		{
 			InitializeComponent();
-
+			
 			MainPage = new MainPage();
 			NavigationPage Race_Page = new NavigationPage();
 		}
