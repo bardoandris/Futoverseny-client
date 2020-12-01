@@ -1,19 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Futoverseny
 {
-	class Data
+	public class Data
 	{
 		public Data(string nev, string osztaly)
 		{
 			Nev = nev;
 			Osztaly = osztaly;
 		}
-		public string Nev { private get; set; }
-		public string Osztaly { private get; set; }
-		public DateTime Ido { private get; set; }
+		public string Nev {  get; set; }
+		public string Osztaly {  get; set; }
+		public TimeSpan Ido { get; set; }
+
+		public override string ToString()
+		{
+			return Nev + "\n" + Osztaly + "\n" + Ido.ToString("mm:ss:.ff");
+		}
 
 	}
 }

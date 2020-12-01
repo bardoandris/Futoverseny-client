@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30711.63
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Futoverseny.Android", "Futoverseny\Futoverseny.Android\Futoverseny.Android.csproj", "{C9CA40A8-54F5-4612-B71B-24F436F5CDCD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Futoverseny", "Futoverseny\Futoverseny\Futoverseny.csproj", "{D7B9E0C1-E3B4-4D7D-B412-A13F1A3FD570}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Futoverseny", "Futoverseny\Futoverseny\Futoverseny.csproj", "{D7B9E0C1-E3B4-4D7D-B412-A13F1A3FD570}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
