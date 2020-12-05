@@ -94,6 +94,10 @@ namespace Futoverseny
 				}
 			}
 		}
+		public string GetTime()
+		{
+			return stopwatch.Elapsed.ToString(@"mm\:ss\:ff");
+		}
 		/// <summary>
 		/// This method Finalizes the time, and starts the method that will attempt to upload the result
 		/// </summary>
@@ -103,6 +107,7 @@ namespace Futoverseny
 			if (Currentstop == StopCount & int.Parse(code.Substring(1, 2)) == Currentstop)
 			{
 				data.Ido = stopwatch.Elapsed;
+				stopwatch.Stop();
 				App.TrySend(data);
 				
 

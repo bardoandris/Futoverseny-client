@@ -13,10 +13,7 @@
 				FontAttributes="Bold"
 				 />
 			<Button Text="Beolvasás" Margin="0,20,0,0" Clicked="Button_Clicked"/>
-            <!--<Frame IsVisible="False" x:Name="ScanFrame">
-                <zxing:ZXingScannerView x:Name="ScannerView" IsScanning="False"/>
-
-            </Frame>-->
+            <Label x:Name="StopwatchLabel" Text="00:00:00" HorizontalTextAlignment="Center" FontSize="50" Margin="0,40,0,0"/>
         </StackLayout>
 	</ContentPage.Content>
 </ContentPage>

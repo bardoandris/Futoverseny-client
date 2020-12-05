@@ -13,9 +13,11 @@ namespace Futoverseny
 		public string Osztaly {  get; set; }
 		public TimeSpan Ido { get; set; }
 
-		public override string ToString()
+		public string Mailify()
 		{
-			return Nev + "\n" + Osztaly + "\n" + Ido.ToString("mm:ss:.ff");
+			return "Név:" + "%20" + Nev.Replace(" ", "%20") + "%0D%0A" +
+			"Osztály:" + "%20" + Osztaly.Replace(" ","%20") + "%0D%0A" +
+			"Idő:" + "%20" + Ido.ToString(@"mm\:ss\:ff");
 		}
 
 	}
