@@ -18,39 +18,35 @@ namespace Futoverseny
 			WrongOrder
 		}
 		Stopwatch stopwatch = new Stopwatch();
-		Dictionary<int, Action<string>> Actions;
-		int StopCount;
+		
 		int Currentstop = 1;
-		Action<string> action;
 		Action<string, FailConditions?> Alert;
 		Data data;
 		
 		public RaceClass(string nev, string osztaly, Action<string, FailConditions?> PageAction)
 		{
-			Actions = new Dictionary<int, Action<string>>();
-			Actions.Add(0, StartRace); //Start Code
-			Actions.Add(1, InRace); // Checks for route violation
-			Actions.Add(2, Finishrace); // Handles the sending of data
 			Alert = PageAction;
 			data = new Data(nev, osztaly);
-			
 		}
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="code"> The Scan's result</param>
-		/// <param name="OutData"> The Data object to be serialized</param>
 		/// <returns>Returns wether the Race is done</returns>
 		public void Process(string code)
 		{
-			Actions.TryGetValue(int.Parse(code.Substring(0, 1)), out action);
-			action.Invoke(code);
-
-
-		}
-		public void InitializeData(string nev, string osztaly)
-		{
-
+			if (code.Contains("Rajt"))
+			{
+				StartRace(code);
+			}
+			else if (code.Contains("Cél"))
+			{
+				FinishRace(code);
+			}
+			else if (!code.Contains("Rajt") && !code.Contains("Cél"))
+			{
+				InRace(code);
+			}	
 		}
 
 		/// <summary>
@@ -59,16 +55,7 @@ namespace Futoverseny
 		/// <param name="code">The scanned Qr code</param>
 		void StartRace(string code)
 		{
-			if (!int.TryParse(code.Substring(1, 2), out StopCount))
-			{
-				FailureHandle(code, FailConditions.InvalidCode);
-			}
-			else
-			{
-				stopwatch.Start();
-			
-				int.TryParse(code.Substring(1, 2), out StopCount);
-			}
+			stopwatch.Start();
 		}
 		/// <summary>
 		/// This method advances the race forward, checks for order
@@ -77,11 +64,7 @@ namespace Futoverseny
 		void InRace(string code)
 		{
 			int temp;
-			if (!int.TryParse(code.Substring(1, 2), out temp))
-			{
-				FailureHandle(code, FailConditions.InvalidCode);
-			}
-			else
+			if (int.TryParse(code.Substring(0, 1), out temp))
 			{
 				if (temp == Currentstop)
 				{
@@ -92,6 +75,11 @@ namespace Futoverseny
 				{
 					FailureHandle(code, FailConditions.WrongOrder);
 				}
+				
+			}
+			else
+			{
+				FailureHandle(code, FailConditions.InvalidCode);
 			}
 		}
 		public string GetTime()
@@ -102,9 +90,9 @@ namespace Futoverseny
 		/// This method Finalizes the time, and starts the method that will attempt to upload the result
 		/// </summary>
 		/// <param name="code">The scanned Qr code</param>
-		void Finishrace(string code)
+		void FinishRace(string code)
 		{
-			if (Currentstop == StopCount & int.Parse(code.Substring(1, 2)) == Currentstop)
+			if (int.Parse(code.Substring(0, 1)) == Currentstop)
 			{
 				data.Ido = stopwatch.Elapsed;
 				stopwatch.Stop();

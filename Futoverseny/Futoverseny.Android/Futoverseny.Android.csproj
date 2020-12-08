@@ -102,7 +102,9 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\icon.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\launcher_foreground.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\map.png" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Futoverseny\Futoverseny.csproj">
       <Project>{C53FB60D-5993-4C22-BACA-9762677BC518}</Project>

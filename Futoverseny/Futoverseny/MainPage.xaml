@@ -6,7 +6,7 @@
 		<Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
 			<Label Text="Üdv a futóverseny rendszerben" HorizontalTextAlignment="Center" TextColor="White" FontSize="28"/>
 		</Frame>
-		<Frame BackgroundColor="Yellow" Margin="0,0,0,40">
+		<Frame BackgroundColor="Yellow" BorderColor="Red" Margin="0,0,0,40">
 			<StackLayout>
 				<Label FontSize="Large" HorizontalOptions="CenterAndExpand">
 					Ezt olvasd el, mielőtt elindulsz!
@@ -17,11 +17,14 @@
                     
 					1. A kezdő QR-kódot beolvasva elindul egy stopper, ami egészen a cél beolvasásáig fut, szóval hajrá :D
 					2. Az útvonalon sorrendben, az összes közbünső kódot beolvasva haladj végig (a sorrendet olvasáskor ellenőrzi az applikáció)
-					3. Ha beértél a célba, akkor az applikáció el fogja küldeni az eredményed automatikusan, amint aktív internetkapcsolata lesz
-					4. Sok szerencsét!
+					3. Ha beértél a célba, akkor az applikáció meg fog nyitni egy levelezőalkalmazást, és az elkészített levelet csak el kell küldened
+				
                     
                 </Label>
-			</StackLayout>
+                <Label FontSize="Large" HorizontalOptions="CenterAndExpand">
+                    Jó futást, sok szerencsét!
+                </Label>
+            </StackLayout>
 		</Frame>
         
         <Label Text="Név" FontSize="Large" />
