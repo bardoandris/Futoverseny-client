@@ -1,43 +1,76 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Diagnostics;
+
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using ZXing.Net.Mobile.Forms;
-using ZXing.Mobile;
+
+
 
 
 namespace Futoverseny
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	
+
 	public partial class RacePage : ContentPage
 	{
 		ZXing.Net.Mobile.Forms.ZXingScannerPage zXingScannerPage;
-		Stopwatch stopwatch = new Stopwatch();
-		public RacePage()
+		RaceClass raceClass;
+		 public RacePage(string nev, string osztaly)
 		{
+			zXingScannerPage = new ZXingScannerPage(); //We will scan the barcodes with creating a new page with this
+			raceClass = new RaceClass(nev, osztaly, DisplayPageAlert); // This object handles all the data 
+			zXingScannerPage.OnScanResult += Onresult;
+			
+			Device.StartTimer(new TimeSpan(0, 0, 0, 0, 50), () =>
+				  {
+					  StopwatchLabel.Text = raceClass.GetTime();
+					  return true;
+				  });
+		
 			InitializeComponent();
 		}
-
-		private async void Button_Clicked(object sender, EventArgs e)
+		/// <summary>
+		/// This method cleans up the scanner, and calls the processing method of the raceclass
+		/// </summary>
+		/// <param name="result"></param>
+		void Onresult(ZXing.Result result)
 		{
-			zXingScannerPage = new ZXingScannerPage();
-			await Navigation.PushModalAsync(zXingScannerPage);
-			zXingScannerPage.OnScanResult += ProcessResult;
-			
+			Navigation.PopModalAsync(true);
+			raceClass.Process(result.Text);
 		}
 
-		async void ProcessResult(ZXing.Result result)
+		private void Button_Clicked(object sender, EventArgs e)
 		{
-			Device.BeginInvokeOnMainThread(delegate { DisplayAlert("QR", result.Text, "ok"); });
-			await Navigation.PopModalAsync(true);		
+			if (Navigation.ModalStack.Count == 1) // The app crashes if the button is clicked twice
+			{
+				Navigation.PushModalAsync(zXingScannerPage, false);
+			}
+
 		}
-		
-		
+		/// <summary>
+		/// This method is here so that the <c>raceClass</c> can push an alert to the screen
+		/// </summary>
+		/// <param name="message"></param>
+		/// <param name="failConditions"></param>
+		void DisplayPageAlert(string message, RaceClass.FailConditions? failConditions)
+		{
+
+			if (failConditions != null)
+			{
+				Device.BeginInvokeOnMainThread(() =>
+				{
+					DisplayAlert("Nem érvényes kód", message, "OK");
+				});
+				if (failConditions == RaceClass.FailConditions.WrongOrder)
+				{
+					Navigation.PopModalAsync();
+				}
+			}
+		}
+
+
+
+
 	}
 }

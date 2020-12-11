@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Forms;
-using ZXing.Net.Mobile.Forms;
 
 
 namespace Futoverseny
@@ -20,19 +14,12 @@ namespace Futoverseny
 
 		private void Button_Clicked(object sender, EventArgs e)
 		{
-			Scanner.IsScanning = true;
-			Navigation.PushModalAsync(new RacePage());
-		}
-
-		private void ZXingScannerView_OnScanResult(ZXing.Result result)
-		{
-			Scanner.IsScanning = false;
-
-			/*Device.BeginInvokeOnMainThread(() =>
+			if (Navigation.ModalStack.Count == 0) // This so the user can't click the button twice, leading to a crash 
 			{
-				DisplayAlert("QR", result.Text, "OK");
-			});*/
-			
+				Navigation.PushModalAsync(new RacePage(NameEntry.Text, ClassEntry.Text), false);
+			} 
 		}
+
+		
 	}
 }
