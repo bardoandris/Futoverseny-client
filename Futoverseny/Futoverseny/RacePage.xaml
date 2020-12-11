@@ -4,17 +4,19 @@
 			 x:Class="Futoverseny.RacePage"
 			 xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms">
 	<ContentPage.Content>
-		<StackLayout>
-			<Label Text="A beolvasáshoz nyomd le a gombot"
+        <ScrollView>
+            <StackLayout>
+                <Label Text="A beolvasáshoz nyomd le a gombot"
 				VerticalOptions="Start" 
 				HorizontalOptions="CenterAndExpand"
 				Margin="0,50,0,0"
 				FontSize="Title"
 				FontAttributes="Bold"
 				 />
-			<Button Text="Beolvasás" Margin="0,20,0,0" Clicked="Button_Clicked"/>
-            <Label x:Name="StopwatchLabel" Text="00:00:00" HorizontalTextAlignment="Center" FontSize="50" Margin="0,40,0,0"/>
-            <Image Source="map.png"/>
-        </StackLayout>
-	</ContentPage.Content>
+                <Button Text="Beolvasás" Margin="0,20,0,0" Clicked="Button_Clicked"/>
+                <Label x:Name="StopwatchLabel" Text="00:00:00" HorizontalTextAlignment="Center" FontSize="50" Margin="0,40,0,0"/>
+                <Image Source="map.png"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
 </ContentPage>

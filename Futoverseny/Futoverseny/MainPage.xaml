@@ -2,13 +2,14 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
 			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 			 x:Class="Futoverseny.MainPage">
-	<StackLayout>
+	<ScrollView>
+        <StackLayout>
 		<Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
 			<Label Text="Üdv a futóverseny rendszerben" HorizontalTextAlignment="Center" TextColor="White" FontSize="28"/>
 		</Frame>
-		<Frame BackgroundColor="Yellow" BorderColor="Red" Margin="0,0,0,40">
+		<Frame BorderColor="DarkRed"  Margin="0,0,0,40">
 			<StackLayout>
-				<Label FontSize="Large" HorizontalOptions="CenterAndExpand">
+				<Label FontSize="Large" HorizontalOptions="CenterAndExpand" TextColor="Red">
 					Ezt olvasd el, mielőtt elindulsz!
 				</Label>
                 
@@ -34,7 +35,7 @@
         <Entry x:Name="ClassEntry" Placeholder=""/>
         
         <Button Text="Belépépés a versenybe" Clicked="Button_Clicked"></Button>
-   
-    </StackLayout>
+   </StackLayout>
+    </ScrollView>
 
 </ContentPage>
