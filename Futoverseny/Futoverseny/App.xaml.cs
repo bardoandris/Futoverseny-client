@@ -34,10 +34,19 @@ namespace Futoverseny
 
 		public static void TrySend(Data data)
 		{
+			var message = new EmailMessage
+			{
+				Subject = "Versenyeredmény",
+				Body = data.Mailify(),
+				To = { "pinter.laszlo@crnl.hu" },
+				BodyFormat = EmailBodyFormat.PlainText
+				
+			};
 			string uri = $@"mailto:pinter.laszlo@crnl.hu?subject=Versenyeredmény&body={data.Mailify()}";
-		
-			
-			Launcher.OpenAsync(new Uri(uri));
+
+			Email.ComposeAsync(message);
+			//Launcher.OpenAsync(new Uri(uri));
+			//Device.OpenUri(new Uri($@"mailto:pinter.laszlo@crnl.hu?subject=Versenyeredmény&body={data.Mailify()}"));
 		}
 
 

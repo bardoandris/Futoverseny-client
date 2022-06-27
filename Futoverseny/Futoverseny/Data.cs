@@ -15,10 +15,14 @@ namespace Futoverseny
 
 		public string Mailify()
 		{
-			return "Név:" + "%20" + Nev.Replace(" ", "%20") + "%0D%0A" +
-			"Osztály:" + "%20" + Osztaly.Replace(" ","%20") + "%0D%0A" +
-			"Idő:" + "%20" + Ido.ToString(@"mm\:ss\:ff");
+			return "Név: " + Nev.ToType() + "\n" +
+			"Osztály: " + Osztaly.ToType() + "\n" +
+			"Idő: " + Ido.ToString(@"mm\:ss\:ff");
 		}
 
 	}
+}
+public static class MyStringExtension
+{
+	public static string ToType(this string str) => str == null ? new String("".ToCharArray()) : str;
 }
